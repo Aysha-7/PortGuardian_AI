@@ -11,21 +11,36 @@ PortGuardian AI is an advanced, hardware-level security simulation dashboard des
 
 ## System Architecture
 
-[ React Frontend Dashboard ]  (Port 5173 / Bolt Environment)
-             │
-             ▼  (POST Payload JSON: e.g., {"scenario": "FIRMWARE_ROOTKIT"})
-   [ Secure Ngrok Tunnel ]     (https://*.ngrok-free.app)
-             │
-             ▼
-   [ FastAPI Backend Engine ]  (Port 8000 / Python Main Core)
-             │
-    ┌────────┴────────┐
-    ▼                 ▼
-[Threat Matrix]   [Multi-Agent Reasoning Chain]
-    │                 │
-    └────────┬────────┘
-             ▼  (JSON Response: Verdict, Score, AI Logic, User Report)
-[ Frontend UI Updates State ] ──> (Renders Critical/Suspicious/Safe UI)
+```mermaid
+graph TD
+    %% Styling Configuration
+    classDef frontend fill:#ebf5ff,stroke:#2563eb,stroke-width:2px,color:#1e3a8a;
+    classDef network fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#5b21b6;
+    classDef backend fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#78350f;
+    classDef logic fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d;
+
+    %% Architectural Components
+    ReactUI[React Frontend Dashboard<br>Port 5173 / Bolt Environment]:::frontend
+    Tunnel[Secure ngrok Tunnel<br>https://*.ngrok-free.app]:::network
+    FastAPI[FastAPI Backend Engine<br>Port 8000 / Python Core]:::backend
+
+    subgraph AgentCore [Multi-Agent Analysis Framework]
+        Sentry[Sentry Layer<br>Raw Telemetry & Bus Scanning]:::logic
+        Triage[Triage Layer<br>Threat Profiling & Matrix Matching]:::logic
+        Isolation[Isolation Layer<br>Mitigation Rules & Relay Simulation]:::logic
+        
+        Sentry --> Triage --> Isolation
+    end
+
+    %% Data Flows and Payloads
+    ReactUI -- "1. POST Payload JSON<br>{scenario: 'FIRMWARE_ROOTKIT'}" --> Tunnel
+    Tunnel --> FastAPI
+    FastAPI -- "2. Evaluate Telemetry Data" --> Sentry
+    Isolation -- "3. JSON Response<br>{verdict, score, ai_logic}" --> FastAPI
+    FastAPI -- "4. Broadcast State Update" --> ReactUI
+
+    %% Visual Indicator Link
+    ReactUI --> SafeAlert[Renders Critical / Suspicious / Safe UI]:::frontend
 
 ---
 
