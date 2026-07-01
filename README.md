@@ -1,11 +1,11 @@
 # PortGuardian AI — Multi-Agent Hardware Threat Detection Dashboard
 
-PortGuardian AI is an advanced, hardware-level security simulation dashboard designed to intercept, analyze, and mitigate sophisticated physical layer attacks. By leveraging a structured multi-agent reasoning framework, the system monitors real-time telemetry from external interfaces and communication buses to classify threat profiles, calculate risk metrics, and execute defensive isolation protocols before system integrity is compromised.
+PortGuardian AI is an advanced, hardware-level security simulation dashboard designed to intercept, analyze, and mitigate sophisticated physical layer attacks[cite: 1]. By leveraging a structured multi-agent reasoning framework, the system monitors real-time telemetry from external interfaces and communication buses to classify threat profiles, calculate risk metrics, and execute defensive isolation protocols before system integrity is compromised[cite: 1].
 
 ### Core Features
-* **Multi-Agent Analysis:** Simulates specialized security agents (Sentry, Triage, and Isolation layers) providing granular step-by-step reasoning for every scan.
-* **10 Deep Hardware Threat Profiles:** Comprehensive detection mappings ranging from physical port exploits to complex bus-level attacks.
-* **Automated Mitigation:** Real-time visual feedback showing block states, physical relay overrides, and hardware-level line termination.
+* **Multi-Agent Analysis:** Simulates specialized security agents (Sentry, Triage, and Isolation layers) providing granular step-by-step reasoning for every scan[cite: 1].
+* **10 Deep Hardware Threat Profiles:** Comprehensive detection mappings ranging from physical port exploits to complex bus-level attacks[cite: 1].
+* **Automated Mitigation:** Real-time visual feedback showing block states, physical relay overrides, and hardware-level line termination[cite: 1].
 
 ---
 
@@ -41,12 +41,13 @@ graph TD
 
     %% Visual Indicator Link
     ReactUI --> SafeAlert[Renders Critical / Suspicious / Safe UI]:::frontend
+```
 
 ---
 
 ## Hardware Threat Detection Matrix
 
-The engine dynamically evaluates the hardware bus topology against 10 critical threat scenarios:
+The engine dynamically evaluates the hardware bus topology against 10 critical threat scenarios[cite: 1]:
 
 | Threat Scenario | Attack Type | Target Interface | Severity |
 | :--- | :--- | :--- | :--- |
@@ -71,21 +72,27 @@ The engine dynamically evaluates the hardware bus topology against 10 critical t
 * ngrok CLI installed and authenticated
 
 ### 1. Backend Server Setup
-Navigate to the project root directory and start the FastAPI engine:
+Navigate to the project root directory and start the FastAPI engine[cite: 1]:
+```bash
 cd C:\Users\ameer\OneDrive\Desktop\PortGuardian_AI
 python main.py
-*The backend server will spin up under local loopback: http://127.0.0.1:8000.*
+```
+*The backend server will spin up under local loopback: [http://127.0.0.1:8000](http://127.0.0.1:8000)[cite: 1].*
 
 ### 2. Establish Secure Reverse Proxy Tunnel
-Open a secondary terminal window and initialize the ngrok secure link, explicitly forcing the port mapping configuration:
+Open a secondary terminal window and initialize the ngrok secure link, explicitly forcing the port mapping configuration[cite: 1]:
+```bash
 .\ngrok http 127.0.0.1:8000
-*Copy the generated forwarding URL address (e.g., https://xxxx-xxxx.ngrok-free.app).*
+```
+*Copy the generated forwarding URL address (e.g., [https://xxxx-xxxx.ngrok-free.app](https://xxxx-xxxx.ngrok-free.app))[cite: 1].*
 
 ### 3. Frontend Link Configuration
-Open the src/hooks/useScan.ts file within your editor and update the core API path declaration string at the top of the file:
+Open the `src/hooks/useScan.ts` file within your editor and update the core API path declaration string at the top of the file[cite: 1]:
+```typescript
 const API_URL = 'https://YOUR_GENERATED_NGROK_URL.ngrok-free.app/api/scan';
+```
 
 ### 4. Running the Dashboard Scan
-* Open the frontend preview window.
-* Force a clean application cache reload via Ctrl + F5.
-* Select any hardware vector from the threat deployment drop-down menu and execute SCAN.
+* Open the frontend preview window[cite: 1].
+* Force a clean application cache reload via `Ctrl + F5`[cite: 1].
+* Select any hardware vector from the threat deployment drop-down menu and execute **SCAN**[cite: 1].
