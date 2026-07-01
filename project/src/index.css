@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #04060a;
+  color: #c7d6e8;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Subtle CRT scanline + grid backdrop for the whole console */
+.crt-backdrop {
+  background-color: #04060a;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0, 229, 255, 0.08), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(255, 45, 85, 0.06), transparent 60%),
+    linear-gradient(rgba(0, 255, 156, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 156, 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+}
+
+/* Thin moving scanline overlay */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.18) 3px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+/* Custom thin scrollbar for terminal + lists */
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 156, 0.25);
+  border-radius: 999px;
+}
+.thin-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 156, 0.45);
+}
+
+/* Neon text utility */
+.neon-text-green {
+  text-shadow: 0 0 6px rgba(0, 255, 156, 0.7), 0 0 18px rgba(0, 255, 156, 0.35);
+}
+.neon-text-red {
+  text-shadow: 0 0 6px rgba(255, 45, 85, 0.75), 0 0 18px rgba(255, 45, 85, 0.4);
+}
+.neon-text-cyan {
+  text-shadow: 0 0 6px rgba(0, 229, 255, 0.7), 0 0 18px rgba(0, 229, 255, 0.35);
+}
+.neon-text-amber {
+  text-shadow: 0 0 6px rgba(255, 176, 32, 0.7), 0 0 18px rgba(255, 176, 32, 0.35);
+}
+
+/* Corner brackets helper */
+.bracket-corners {
+  position: relative;
+}
+.bracket-corners::before,
+.bracket-corners::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(0, 255, 156, 0.55);
+  pointer-events: none;
+}
+.bracket-corners::before {
+  top: 6px;
+  left: 6px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.bracket-corners::after {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
